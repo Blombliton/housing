@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Python-cod</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <ul class="nav nav-tabs bg-success shadow rounded sticky-sm-top ">
+        <li class="nav-item">
+          <a class="nav-link text-white" aria-current="page" href="../python/index.html">Главная</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="../data/index.html">Подключение и обработка</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white" href="../text/index.html">Работа с данными</a>
+          </li> 
+        <li class="nav-item">
+          <a class="nav-link text-white" href="../table/index.html">Визуализация</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="../photo/index.html">Модель</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="../test/index.html">Колаб test</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active link-dark fw-bolder" href="../housing/index.html">Колаб housing</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="../regression/index.html">Колаб регрессия</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="../visual/index.html">Колаб визуализация</a>
+        </li>
+        <button type="button" class="btn btn-succes text-white px-3" type="submit" onClick="location.href='https://www.youtube.com/watch?v=kb8mcYwbFj8&ab_channel=GloAcademy'">YouTube</button> 
+      </ul>
+      
+<div class="container">
+<pre>
+<code>
+from google.colab import files
+uploaded = files.upload()
+
+__________________________________________________________________________________________
+
+import pandas as pd
+data = pd.read_csv('housing.csv', sep = ',')
+data = data.sort_values(by='longitude')[:1000]
+data
+
+__________________________________________________________________________________________
+
+import matplotlib.pyplot as plt
+fig, ax = plt.subplots()
+data.plot(kind='hist', x= "population", y= "median_income", ax = ax)
+ax.legend().set_visible(False) 
+
+fig.savefig('median_income.png', transparent=False, dpi=80, bbox_inches="tight")
+__________________________________________________________________________________________
+
+import pandas as pd
+data = pd.read_csv('housing.csv', sep = ',')
+data = data.sort_values(by='longitude', ascending=False)[:1000]
+data
+__________________________________________________________________________________________
+
+import matplotlib.pyplot as plt
+fig, ax = plt.subplots()
+data.plot(kind='bar', x= "total_rooms", y= "total_bedrooms", ax = ax)
+
+avg = data['total_bedrooms'].mean()
+competitors = data[data.total_bedrooms > avg]
+ax.axhline(y=len(competitors)-0.5, color='g', label='Average', linestyle='-', linewidth=4)
+ax.legend().set_visible(False) 
+
+fig.savefig('total_bedrooms.png', transparent=False, dpi=80, bbox_inches="tight")
+__________________________________________________________________________________________
+
+import pandas as pd
+data = pd.read_csv('housing.csv', sep = ',')
+data = data.sort_values(by='longitude')[:1000]
+data
+__________________________________________________________________________________________
+
+import matplotlib.pyplot as plt
+fig, ax = plt.subplots()
+data.plot(kind='scatter', x= "housing_median_age", y= "median_house_value", ax = ax)
+
+ax.set(title='Houses',
+xlabel = 'housing median age', ylabel='median house value')
+
+competitors = data[data.median_house_value < avg]
+ax.axhline(y=len(competitors)-5, color='r', label='Average', linestyle='-.', linewidth=3)
+
+fig.savefig('Houses.png', transparent=False, dpi=80, bbox_inches="tight")
+</code>
+</pre>
+</div>
+</body>
+</html>
